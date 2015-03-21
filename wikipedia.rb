@@ -1,6 +1,6 @@
 require 'rubygems'
-require 'nokogiri' 
-require 'open-uri' 
+require 'nokogiri'
+require 'open-uri'
 require 'json'
 require 'csv'
 
@@ -10,7 +10,7 @@ class WikipediaScraper < Nokogiri::HTML::Document
     page = Nokogiri::HTML(open("http://en.wikipedia.org/wiki/List_of_countries_and_dependencies_by_population"))
     puts page.class   # => Nokogiri::HTML::Document
 
-    rows = page.css('.wikitable tr') 
+    rows = page.css('.wikitable tr')
 
     populations = {}
     rows.each do |row|
