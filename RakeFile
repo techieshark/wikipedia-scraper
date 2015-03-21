@@ -15,10 +15,10 @@ end
 desc "Generate JSON file"
 task :json do
   puts "Generating JSON file"
-  @populations = WikipediaScraper.scrape
   directory "json"
+  populations = WikipediaScraper.scrape
   File.open("json/populations.json","w") do |f|
-    f.write(@populations.to_json)
+    f.write(populations.to_json)
   end
 end
 
@@ -26,11 +26,11 @@ end
 desc "Generate CSV file"
 task :csv do
   puts "Generating CSV file"
-  @populations = WikipediaScraper.scrape
   directory "csv"
+  populations = WikipediaScraper.scrape
   CSV.open("csv/populations.csv","wb") do |csv|
-    @populations.to_a.each do |elem|
       csv << elem
+    populations.to_a.each do |elem|
     end
   end
 end
