@@ -1,4 +1,5 @@
 require 'rubygems'
+require 'fileutils'
 require_relative './wikipedia'
 
 # in the console run rake scrape
@@ -15,8 +16,8 @@ end
 desc "Generate JSON file"
 task :json do
   puts "Generating JSON file"
-  directory "json"
   populations = WikipediaScraper.scrape
+  FileUtils.mkdir_p "json"
   File.open("json/populations.json","w") do |f|
     f.write(populations.to_json)
   end
@@ -26,11 +27,11 @@ end
 desc "Generate CSV file"
 task :csv do
   puts "Generating CSV file"
-  directory "csv"
   populations = WikipediaScraper.scrape
+  FileUtils.mkdir_p "csv"
   CSV.open("csv/populations.csv","wb") do |csv|
-      csv << elem
     populations.to_a.each do |elem|
+      csv << elem
     end
   end
 end
